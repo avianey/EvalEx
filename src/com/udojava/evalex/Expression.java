@@ -1112,7 +1112,7 @@ public class Expression {
 					outputQueue.add(stack.pop());
 				}
 				if (stack.isEmpty()) {
-					throw new RuntimeException("Mismatched parentheses");
+					throw new ExpressionException("Mismatched parentheses");
 				}
 				stack.pop();
 				if (!stack.isEmpty()
@@ -1126,10 +1126,10 @@ public class Expression {
 		while (!stack.isEmpty()) {
 			String element = stack.pop();
 			if ("(".equals(element) || ")".equals(element)) {
-				throw new RuntimeException("Mismatched parentheses");
+				throw new ExpressionException("Mismatched parentheses");
 			}
 			if (!operators.containsKey(element)) {
-				throw new RuntimeException("Unknown operator or function: "
+				throw new ExpressionException("Unknown operator or function: "
 						+ element);
 			}
 			outputQueue.add(element);
